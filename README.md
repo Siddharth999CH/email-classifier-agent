@@ -1,96 +1,97 @@
-Email Classifier and Responder
-This is a Python-based AI agent that uses the Gmail API to check for new emails, classifies them using OpenAI's language models, and can draft appropriate responses. The agent is designed to help you quickly triage and manage your inbox.
+📧 Email Classifier & Responder Agent
+A smart Python agent that uses the power of AI to automatically triage your emails, classify them, and draft intelligent responses. Spend less time in your inbox and more time on what matters!
 
-Features
-Email Retrieval: Fetches unread emails from a specified Gmail account.
+✨ Features
+Intelligent Classification: Uses OpenAI's gpt-3.5-turbo to categorize emails as Urgent, Follow-up, or Spam.
 
-AI Classification: Classifies each email into categories like "Urgent," "Follow-up," or "Spam" using OpenAI's gpt-3.5-turbo model.
+Context-Aware Drafting: Generates professional and polite draft replies based on the email's content and its classification.
 
-Draft Response Generation: Automatically drafts a professional and context-aware response for urgent and follow-up emails.
+Gmail API Integration: Seamlessly connects to your Gmail inbox to fetch new messages and handle responses.
 
-Secure API Handling: Utilizes a .env file to securely manage API keys and credentials, ensuring they are never exposed in the repository.
+Secure & Private: Handles all API keys and sensitive credentials safely in a .env file, ensuring they are never exposed in your public repository.
+
+🚀 Getting Started
+Follow these steps to set up and run the agent on your local machine.
 
 Prerequisites
-To run this project, you will need:
+Python 3.7+
 
-Python 3.7+ installed on your system.
+Git
 
-A Git client to clone the repository.
+An OpenAI API Key
 
-An OpenAI API Key from the OpenAI Platform.
+Google Cloud Account with the Gmail API enabled.
 
-Google Cloud credentials for the Gmail API.
-
-Setup Instructions
-Follow these steps to get the project running on your local machine.
-
+⚙️ Setup Instructions
 1. Clone the Repository
-Clone this repository to your local machine:
+
+Clone this project to your computer and navigate into the directory.
 
 git clone https://github.com/Siddharth999CH/email-classifier-agent.git
 cd email-classifier-agent
 
-2. Create and Activate a Virtual Environment
-It is highly recommended to use a virtual environment to manage your dependencies.
+2. Create & Activate a Virtual Environment
 
-On macOS/Linux:
-
-python3 -m venv venv
-source venv/bin/activate
+This isolates the project dependencies from your global Python environment.
 
 On Windows:
 
 python -m venv venv
 .\venv\Scripts\activate
 
-3. Install Dependencies
-Install the required Python libraries using the requirements.txt file:
+On macOS/Linux:
+
+python3 -m venv venv
+source venv/bin/activate
+
+3. Install Python Packages
+
+Install all the required libraries from the requirements.txt file.
 
 pip install -r requirements.txt
 
-4. Configure Your API Keys
-You must create a .env file to store your API keys. This file is ignored by Git and will not be pushed to GitHub.
+🔑 API Configuration
+1. Create a .env file
 
-Create a file named .env in the root of your project and add the following lines, replacing the placeholder text with your actual key:
+This file holds your secret keys and is automatically ignored by Git. Create a new file named .env in your project's root folder and add the following lines, replacing the placeholder with your actual key:
 
 OPENAI_API_KEY=your_openai_api_key_here
 GMAIL_CREDENTIALS_FILE=credentials.json
 
-5. Set Up Google Cloud Credentials
-Follow the steps below to obtain your credentials.json file. This file must be saved in the project's root directory, but it is already added to .gitignore for security.
+2. Get Google Cloud Credentials
 
 Go to the Google Cloud Console and create a new project.
 
-Enable the Gmail API under "APIs & Services".
+Enable the Gmail API.
 
-Go to the OAuth consent screen and configure your app (make sure to set your email as a test user).
+Go to the OAuth consent screen and configure your app, making sure to add your email as a test user.
 
-Navigate to Credentials, click Create Credentials, and choose OAuth client ID.
+Under Credentials, create a new OAuth client ID of type "Desktop app."
 
-Select "Desktop app" and click CREATE.
+Download the credentials.json file and place it in your project's root directory.
 
-Click DOWNLOAD JSON and save the file as credentials.json in your project's root folder.
+🔒 Security Note: Both credentials.json and the generated token.json are already listed in the .gitignore file and will not be committed to GitHub.
 
-6. First Run and Authentication
-The first time you run the script, it will handle the authentication process with the Gmail API.
+🏃 Usage
+1. Initial Run & Authentication
 
-python agent.py
-
-A browser window will open, prompting you to log in to your Google Account and grant the necessary permissions. After you complete this, the script will save an access token to a new file named token.json. This file is also ignored by Git for your security.
-
-Usage
-After the initial setup and authentication, you can run the script at any time to process your unread emails.
+The very first time you run the script, a browser window will open to securely authenticate with your Gmail account.
 
 python agent.py
 
-The script will print the classification and a drafted response for each email. The code to actually send the replies and mark emails as read is currently commented out for safety. You can uncomment those lines in agent.py once you are confident with the agent's behavior.
+After granting permissions, an access token will be saved to a file named token.json so you won't need to authenticate again.
 
-Project File Structure
+2. Processing Emails
+
+The agent will then fetch your unread emails, classify them, and print the results to the console. The code to actually send replies and mark emails as read is initially commented out for your safety.
+
+You can uncomment the send_reply and modify lines in agent.py once you are ready to automate these actions.
+
+📂 Project Structure
 email-classifier-agent/
-├── .env                  # Stores your API keys (ignored by Git)
-├── .gitignore            # Specifies which files to ignore (like keys and tokens)
-├── agent.py              # The main script with all the agent's logic
-├── README.md             # This file
-├── requirements.txt      # Lists the Python libraries needed
+├── .env                  # Your secret API keys (ignored by Git)
+├── .gitignore            # Tells Git which files to ignore
+├── agent.py              # The core logic of the email agent
+├── requirements.txt      # List of all Python dependencies
 ├── credentials.json      # Google Cloud credentials (ignored by Git)
-└── token.json            # Gmail API access token (created on first run, ignored by Git)
+└── token.json            # Generated access token (created on first run, ignored by Git)
